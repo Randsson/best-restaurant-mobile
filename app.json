@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "best-restaurant-mobile",
+    "slug": "best-restaurant-mobile",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "best-restaurant-mobile"
+}
