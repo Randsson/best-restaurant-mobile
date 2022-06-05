@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import { StyleSheet, View, Alert } from 'react-native';
 import MapView from 'react-native-maps';
 import * as Location from 'expo-location';
-import { Alert } from 'react-native-web';
 
 export default function App() {
   const [latitude, setLatitude] = useState(0);
@@ -25,8 +24,16 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <MapView style={styles.map}>
-
+      <MapView style={styles.map}
+        region={
+            {
+            latitude: latitude,
+            longitude: longitude,
+            latitudeDelta: 0.03,
+            longitudeDelta: 0.03
+          }
+        }
+      >
       </MapView>
     </View>
   );
