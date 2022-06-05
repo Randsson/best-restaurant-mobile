@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, View, Alert } from 'react-native';
-import MapView from 'react-native-maps';
+import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 
 export default function App() {
@@ -34,6 +34,14 @@ export default function App() {
           }
         }
       >
+      <Marker title={'Sua localização'} icon={require('./src/images/location_icon.png')}
+        coordinate ={
+          {
+          latitude: latitude,
+          longitude: longitude
+          }
+        }
+      />
       </MapView>
     </View>
   );
