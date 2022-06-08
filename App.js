@@ -3,13 +3,16 @@ import { StyleSheet, View, Alert } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 
+import StoreService from '.src/services/store_service;'
+
 export default function App() {
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
+  const [locations, setLocations] = useState([]);
 
   useEffect(() =>{
     (async () => {
-      let {status} = await Location.requestPermissionsAsync();
+      let {status} = await Location.requestForegroundPermissionsAsync();
 
       if (status !== 'granted'){
         Alert.alert('Habilite sua localização para acessar o aplicativo');
@@ -20,7 +23,19 @@ export default function App() {
         setLongitude(location.coords.longitude);
       }
     })();
+    loadRestaurants();
   }, []);
+
+
+  async function loadRestaurants() {
+    try {
+      const response = await storeService.index(latitude, longitude);
+      setLocations(response.data.results);
+    } catch (error) {
+      setLocations([]);
+    }
+
+  }
 
   return (
     <View style={styles.container}>
