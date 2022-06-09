@@ -3,7 +3,8 @@ import { StyleSheet, View, Alert } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 
-import StoreService from '.src/services/store_service;'
+import EstablishmentService from './src/services/establishment_service.js';
+
 
 export default function App() {
   const [latitude, setLatitude] = useState(0);
@@ -29,7 +30,7 @@ export default function App() {
 
   async function loadRestaurants() {
     try {
-      const response = await storeService.index(latitude, longitude);
+      const response = await EstablishmentService.index(latitude, longitude);
       setLocations(response.data.results);
     } catch (error) {
       setLocations([]);
@@ -57,6 +58,23 @@ export default function App() {
           }
         }
       />
+      {
+        locations.map(item => {
+          return (
+            <Marker key={item.place_id}
+                    title={item.name}
+                    icon={require('./src/images/restarant_icon.png')}
+                    coordinate={
+                      {
+                        latitude: item.geometry.location.lat,
+                        longitude: item.geometry.location.lng
+                      }
+                    }
+                    
+            />
+          )
+        })
+        }
       </MapView>
     </View>
   );
