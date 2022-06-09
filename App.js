@@ -63,7 +63,7 @@ export default function App() {
           return (
             <Marker key={item.place_id}
                     title={item.name}
-                    icon={require('./src/images/restarant_icon.png')}
+                    icon={require('./src/images/restaurant_icon.png')}
                     coordinate={
                       {
                         latitude: item.geometry.location.lat,
