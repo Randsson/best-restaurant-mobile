@@ -65,11 +65,11 @@ export default function App() {
       />
       {
         locations.map(item => {
-          // console.log(locations)
+          console.log(locations)
           return (
             <Marker key={item.place_id}
                     title={item.name}
-                    icon={require('./src/images/restaurant_icon.png')}
+                    icon={require('./src/images/restaurant_icon3.png')}
                     coordinate={
                       {
                         latitude: item.geometry.location.lat,
