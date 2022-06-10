@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   background: {
-    backgroundColor: 'black',
+    backgroundColor: '#0F2027',
     paddingTop: 20,
     borderRadius: 20,
   },
