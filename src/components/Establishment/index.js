@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, Image, ScrollView, Button } from 'react-native';
 
 import EstablishmentService from '../../services/establishment_service.js';
+import ListRatings from './ListRatings';
 
 const Separator = () => (
   <View style={styles.separator} />
@@ -29,17 +30,16 @@ const Establishment = (props) => {
         establishment != null &&
         <View style={styles.background}>
           <ScrollView style={{ height: 600 }}>
-
             <View style={{ marginHorizontal: 30 }}>
               <View style={{ alignSelf: 'flex-end' }}>
                 <Button title="X" color="black" onPress={() => setEstablishment(null)} />
               </View>
 
-              {
+              {              
                 (establishment.photos) ?
                   <Image style={styles.photo}
                     source={
-                      { uri: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${establishment.photos[0].photo_reference}&sensor=false&key=` }} alt="Store perfil" />
+                      { uri: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${establishment.photos[0].photo_reference}&sensor=false&key=AIzaSyAINVYVTbHZA9vE65UGDpwYFpIrF30xzfw` }} alt="Store perfil" />
                   :
                   <Image style={styles.photo} source={require('../../images/sem_foto.jpg')} />
               }
@@ -74,9 +74,10 @@ const Establishment = (props) => {
               <Separator />
 
               <Text style={{ color: 'white' }}>{establishment.formatted_address}</Text>
-
+              
               <Separator />
-
+              
+              <ListRatings place={props.place} />
 
             </View>
           </ScrollView>
