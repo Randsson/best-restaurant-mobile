@@ -70,7 +70,6 @@ const Establishment = (props) => {
                   </View>
               }
 
-
               <Separator />
 
               <Text style={{ color: 'white' }}>{establishment.formatted_address}</Text>
@@ -78,7 +77,6 @@ const Establishment = (props) => {
               <Separator />
               
               <ListRatings place={props.place} />
-
             </View>
           </ScrollView>
           <View style={styles.rodape}>

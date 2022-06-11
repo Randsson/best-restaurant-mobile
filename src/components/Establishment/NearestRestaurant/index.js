@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faHeart, faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import ListRestaurants from './ListRestaurants';
 
 const Separator = () => (
   <View style={styles.separator} />
@@ -25,7 +26,8 @@ const NearestRestaurants = (props) =>{
           <Text style={styles.title}>melhores restaurantes proximos de voce</Text>
 
           <Separator />
-
+          
+          <ListRestaurants latitude={props.latitude} longitude={props.longitude} />
         </View>
       }
     </View>
