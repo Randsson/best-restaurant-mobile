@@ -14,8 +14,16 @@ export default function App() {
   const [selected, setSelected] = useState(null);
 
   useEffect(() =>{
+    async function loadRestaurants(latitude, longitude) {
+      try {
+        const response = await EstablishmentService.index(latitude, longitude);
+        setLocations(response.data.results);
+      } catch (error) {
+        setLocations([]);
+      }
+    }
     (async () => {
-      let {status} = await Location.requestForegroundPermissionsAsync();
+      let {status} = await Location.requestBackgroundPermissionsAsync();
 
       if (status !== 'granted'){
         Alert.alert('Habilite sua localização para acessar o aplicativo');
@@ -24,25 +32,13 @@ export default function App() {
         let location = await Location.getCurrentPositionAsync({});
         setLatitude(location.coords.latitude);
         setLongitude(location.coords.longitude);
+        loadRestaurants(location.coords.latitude, location.coords.longitude);
       }
     })();
-    loadRestaurants();
   }, []);
-
-
-  async function loadRestaurants() {
-    try {
-      const response = await EstablishmentService.index(latitude, longitude);
-      setLocations(response.data.results);
-    } catch (error) {
-      setLocations([]);
-    }
-
-  }
 
   return (
     <View style={styles.container}>
-
     {(selected) && <Establishment place={selected} />}
     
       <MapView style={styles.map}
@@ -65,7 +61,7 @@ export default function App() {
       />
       {
         locations.map(item => {
-          console.log(locations)
+          
           return (
             <Marker key={item.place_id}
                     title={item.name}

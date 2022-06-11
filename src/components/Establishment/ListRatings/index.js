@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import StoreService from '../../../services/store_service';
 import EstablishmentService from '../../../services/establishment_service';
 import StarRating from 'react-native-star-rating';
-
-const Separator = () => (
-  <View style={styles.separator} />
-);
 
 const ListRatings = (props) => {
   const [store, setStore] = useState([]);
@@ -18,7 +13,6 @@ const ListRatings = (props) => {
   async function getStore() {
     try {
       const response = await EstablishmentService.show(props.place.place_id);
-      // console.log(Object.keys(response.data.result));
       setStore(response.data.result);
     } catch (error) {
       setStore([]);
