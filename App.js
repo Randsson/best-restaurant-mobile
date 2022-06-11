@@ -5,6 +5,7 @@ import * as Location from 'expo-location';
 import Establishment from './src/components/Establishment';
 
 import EstablishmentService from './src/services/establishment_service.js';
+import NearestRestaurants from './src/components/Establishment/NearestRestaurant';
 
 
 export default function App() {
@@ -39,7 +40,8 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-    {(selected) && <Establishment place={selected} />}
+      <NearestRestaurants latitude={latitude} longitude={longitude} />
+      {(selected) && <Establishment place={selected} />}
     
       <MapView style={styles.map}
         region={
