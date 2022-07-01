@@ -17,6 +17,9 @@ const ListRestaurants = (props) => {
   async function loadNearbyRestaurants() {
     try {
       const response = await EstablishmentService.index(props.latitude, props.longitude);
+      response.data.results.sort((a,b) => {
+        return b.rating - a.rating;
+      });
       setStores(response.data.results);
     } catch (error) {
       setStores([]);
