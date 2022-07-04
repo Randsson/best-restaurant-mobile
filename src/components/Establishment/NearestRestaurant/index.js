@@ -22,7 +22,7 @@ const NearestRestaurants = (props) =>{
       </TouchableOpacity>
       {
         showDropdownButton == true &&
-        <View style={styles.nearstCoffees}>
+        <View style={styles.nearstRestaurants}>
           <Text style={styles.title}>melhores restaurantes proximos de voce</Text>
 
           <Separator />
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginRight: 20,
   },
-  nearstCoffees: {
+  nearstRestaurants: {
     backgroundColor: 'black',
     width: 190,
     marginTop: 5,
